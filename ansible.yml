@@ -5,5 +5,5 @@
    - name: Run jar
      shell: nohup java -jar target/randomquotes.0.1.9.jar &
 
-    - name: Ending the 1st play now
-      meta: end_play
+   - name: Ending the 1st play now
+     meta: end_play
