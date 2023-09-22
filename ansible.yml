@@ -3,4 +3,4 @@
   connection: local
   tasks:
    - name: Run jar
-     shell: java -jar target/randomquotes.0.1.9.jar
+     shell: nohup java -jar target/randomquotes.0.1.9.jar &
