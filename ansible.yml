@@ -2,5 +2,23 @@
 - hosts: webservers
   connection: local
   tasks:
-   - name: Run jar
-     shell: nohup java -jar target/randomquotes.0.1.9.jar >/dev/null 2>&1 &
+    - name: Create a login user
+      user:
+        name: randomquotes
+        # password: 'randomquotes@123'
+        state: present
+        shell: /bin/bash       # Defaults to /bin/bash
+        system: no             # Defaults to no
+        createhome: yes        # Defaults to yes
+        home: /home/randomquotes  # Defaults to /home/<username>
+
+    - name: Copy the jar
+      shell: cp target/randomquotes.0.1.9.jar /home/randomquotes
+
+    - name: change the user
+      user:
+        become: true
+        become_user: randomquotes
+
+    - name: Run jar
+      shell: nohup java -jar randomquotes.0.1.9.jar >/dev/null 2>&1 &
